@@ -1,0 +1,17 @@
+signature pair/2, fst/1, snd/1, open/2, td/3, f/4;
+variables x, y, z, t, tt;
+names a, b, c, d, w1, w2, w3;
+rewrite
+        fst(pair(x, y)) -> x,
+	snd(pair(x, y)) -> y,
+	open(td(x, y, z), y) -> x,
+	open(td(x, y, z), f(x, y, z, t)) -> t,
+	td(x, f(x, y, z, t), z) -> td(x, y, z),
+	f(x, f(x, y, z, t), z, tt) -> f(x, y, z, tt);
+frames
+        phi1 = new a, b, c, d.{w1 = f(a, b, c, d), w2 = a, w3 = c},
+        phi2 = new a, b, c, d.{w1 = f(a, b, c, d), w2 = b, w3 = c};
+questions
+        deducible f(a, b, c, f(a, b, c, d)) phi1,
+        equiv phi1 phi2,
+        knowledgebase phi1;

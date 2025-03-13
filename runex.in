@@ -1,0 +1,11 @@
+signature enc/2, dec/2, mal/2;
+variables x, y, z;
+names a, b, w0, k;
+rewrite
+        dec(enc(x, y), y) -> x,
+	mal(enc(x, y), z) -> enc(z, y);
+frames
+        phi1 = new a,k.{w0 = enc(b, k)};
+questions
+	knowledgebase phi1;
+

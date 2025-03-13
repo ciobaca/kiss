@@ -1,0 +1,12 @@
+signature pair/2, fst/1, snd/1, enc/2, dec/2;
+variables x, y;
+names a, b, w0, w1, k0, k1;
+rewrite
+        fst(pair(x, y)) -> x,
+        snd(pair(x, y)) -> y,
+        dec(enc(x, y), y) -> x;
+frames
+        phi1 = new a, b, k0, k1.{w0 = a, w1 = pair(enc( pair(enc(a,k0),k0), k1), k1)};
+questions
+        equiv phi1 phi1,
+	knowledgebase phi1;

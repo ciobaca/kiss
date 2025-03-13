@@ -1,0 +1,15 @@
+signature enc/2, dec/2, mal/2;
+variables x, y, z;
+names a, b, c, w1, k;
+rewrite
+        dec(enc(x, y), y) -> x,
+	mal(enc(x, y), z) -> enc(z, y);
+frames
+        phi1 = new a,k.{w1 = enc(a, k)},
+	phi2 = new a,k.{w1 = enc(b, k)};
+questions
+	knowledgebase phi1,
+	knowledgebase phi2,
+	equiv phi1 phi2,
+	deducible enc(c,k) phi2,
+	deducible b phi2;
